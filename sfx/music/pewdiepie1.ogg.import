@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pewdiepie1.ogg-fe8742198efd97b5e542945963ace319.oggstr"
+
+[deps]
+
+source_file="res://sfx/music/pewdiepie1.ogg"
+dest_files=[ "res://.import/pewdiepie1.ogg-fe8742198efd97b5e542945963ace319.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

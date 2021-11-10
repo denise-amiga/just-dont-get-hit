@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://bullets/generators/directionalgenerator.gd" type="Script" id=1]
+
+[node name="DirectionalGenerator" type="Node2D"]
+script = ExtResource( 1 )
+shots_per_second = 20.0
+dir = Vector2( 0.5, 0.5 )

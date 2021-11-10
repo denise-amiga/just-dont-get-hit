@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://world/World.gd" type="Script" id=2]
+[ext_resource path="res://hud/damagerect.tscn" type="PackedScene" id=3]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 100 )
+shooting = false
+
+[node name="DamageRect" parent="." instance=ExtResource( 3 )]

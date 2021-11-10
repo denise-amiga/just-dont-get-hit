@@ -1,0 +1,227 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://bosses/pewdiepie/bridge.png" type="Texture" id=1]
+[ext_resource path="res://bosses/pewdiepie/pewdiepie.png" type="Texture" id=2]
+[ext_resource path="res://bullets/bullets/cmonbruh.gd" type="Script" id=3]
+[ext_resource path="res://bullets/generators/coolcircle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://bosses/pewdiepie/pewdiepie.gd" type="Script" id=5]
+[ext_resource path="res://bullets/bullets/brofist.gd" type="Script" id=6]
+[ext_resource path="res://bullets/generators/directionalgenerator.tscn" type="PackedScene" id=7]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "attack1"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "attack2"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=3]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/attack1/node = SubResource( 1 )
+states/attack1/position = Vector2( 621, 69 )
+states/attack2/node = SubResource( 11 )
+states/attack2/position = Vector2( 639, 218 )
+states/idle/node = SubResource( 2 )
+states/idle/position = Vector2( 383, 69 )
+transitions = [ "idle", "attack1", SubResource( 3 ), "attack1", "attack2", SubResource( 12 ), "attack2", "idle", SubResource( 13 ) ]
+start_node = "idle"
+graph_offset = Vector2( 41, 7 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 110, 42 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DirectionalGenerator:shooting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/CoolCircle:shooting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/CoolCircle:angle")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "attack1"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, 42 ), Vector2( 64, 42 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite/CoolCircle:shooting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/CoolCircle:angle")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -0.5, 3.64 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "attack2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("DirectionalGenerator:shooting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("DirectionalGenerator2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "toggle_shooting"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "idle"
+
+[node name="PewDiePie" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Bridge" type="Sprite" parent="."]
+scale = Vector2( 0.304038, 0.304038 )
+z_index = -10
+texture = ExtResource( 1 )
+centered = false
+
+[node name="DirectionalGenerator2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 64, 0 )
+z_index = -2
+shots_per_second = 7.5
+shooting = false
+bullet_script = ExtResource( 6 )
+dir = Vector2( 0, 1 )
+offset = 5.0
+alt_offset = 5.0
+count = 20
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 110, 42 )
+scale = Vector2( 0.074, 0.074 )
+z_index = -1
+texture = ExtResource( 2 )
+
+[node name="CoolCircle" parent="Sprite" instance=ExtResource( 4 )]
+scale = Vector2( 13.5135, 13.5135 )
+shots_per_second = 9.0
+rotation_speed = 0.0
+speed = 80.0
+life_time = 4.0
+shooting = false
+bullet_script = ExtResource( 3 )
+count = 1
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 7 )
+anims/attack1 = SubResource( 8 )
+anims/attack2 = SubResource( 10 )
+anims/idle = SubResource( 9 )
+
+[node name="DirectionalGenerator" parent="." instance=ExtResource( 7 )]
+position = Vector2( 64, -16 )
+shots_per_second = 2.0
+speed = 40.0
+life_time = 5.0
+shooting = false
+bullet_script = ExtResource( 6 )
+dir = Vector2( 0, 1 )
+offset = 64.0
+alt_offset = 10.0
+count = 5
