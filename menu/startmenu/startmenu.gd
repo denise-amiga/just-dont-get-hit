@@ -2,7 +2,6 @@ extends Control
 
 const title_texts = [
 	"Just don't get hit LOOOOOOOL",
-	"Forsen forsen boys forsen booys",
 	"Now with more juice than ever",
 	"EEEEEEEEEEEE EEEEEEEEEEEE",
 	"forsen forsen forsen forsen forsen forsen forsen forsen",
