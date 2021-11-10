@@ -1,6 +1,18 @@
 extends Control
 
+const title_texts = [
+	"Just don't get hit LOOOOOOOL",
+	"Forsen forsen boys forsen booys",
+	"Now with more juice than ever",
+	"EEEEEEEEEEEE EEEEEEEEEEEE",
+	"forsen forsen forsen forsen forsen forsen forsen forsen",
+	"Good fuckin morning bajs",
+	"\"God gamer\""
+]
+
 func _ready():
+	randomize()
+	$Buttons/Label.text = title_texts[randi()%title_texts.size()]
 	SFX.play_music(SFX.MUSIC_MAIN)
 	if int(Game.game_state["kill_streak"]) == 0:
 		$Buttons/Continue.visible = false
